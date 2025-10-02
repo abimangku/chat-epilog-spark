@@ -66,4 +66,82 @@ All colors MUST be HSL.
   .glass {
     @apply bg-background/80 backdrop-blur-lg border border-border;
   }
+  
+  /* Animated gradient spotlights */
+  .animated-gradient-1,
+  .animated-gradient-2,
+  .animated-gradient-3 {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.08;
+    will-change: transform;
+  }
+  
+  .animated-gradient-1 {
+    background: radial-gradient(circle, hsl(0 0% 40%) 0%, transparent 70%);
+    top: 20%;
+    left: 10%;
+    animation: float-1 20s ease-in-out infinite;
+  }
+  
+  .animated-gradient-2 {
+    background: radial-gradient(circle, hsl(0 0% 50%) 0%, transparent 70%);
+    top: 60%;
+    right: 15%;
+    animation: float-2 25s ease-in-out infinite;
+  }
+  
+  .animated-gradient-3 {
+    background: radial-gradient(circle, hsl(0 0% 45%) 0%, transparent 70%);
+    bottom: 30%;
+    left: 50%;
+    animation: float-3 30s ease-in-out infinite;
+  }
+  
+  @keyframes float-1 {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(100px, -80px);
+    }
+    50% {
+      transform: translate(200px, 50px);
+    }
+    75% {
+      transform: translate(80px, 120px);
+    }
+  }
+  
+  @keyframes float-2 {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    33% {
+      transform: translate(-120px, 100px);
+    }
+    66% {
+      transform: translate(-200px, -60px);
+    }
+  }
+  
+  @keyframes float-3 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(-150px, -100px) scale(1.1);
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .animated-gradient-1,
+    .animated-gradient-2,
+    .animated-gradient-3 {
+      animation: none;
+    }
+  }
 }
