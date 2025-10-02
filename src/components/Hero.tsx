@@ -45,17 +45,6 @@ const Hero = () => {
             <ChatInterface />
           </div>
 
-          {/* Trust Indicators */}
-          <div className="pt-12 text-center">
-            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-8 font-light">Trusted by</p>
-            <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
-              {["BCA", "BSI", "Kalbe", "JNE", "Allianz", "ERHA"].map((brand) => (
-                <div key={brand} className="text-xl font-light tracking-wide text-foreground/60">
-                  {brand}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>
