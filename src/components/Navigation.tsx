@@ -1,5 +1,6 @@
 import { Home, Briefcase, Users, Mail } from "lucide-react"
 import { NavBar } from "@/components/ui/tubelight-navbar"
+import epilogLogo from "@/assets/epilog-logo.avif"
 
 export default function Navigation() {
   const navItems = [
@@ -9,5 +10,23 @@ export default function Navigation() {
     { name: "Contact", href: "#contact", icon: Mail },
   ]
 
-  return <NavBar items={navItems} />
+  return (
+    <>
+      <a 
+        href="#hero" 
+        className="fixed top-6 left-6 z-50"
+        onClick={(e) => {
+          e.preventDefault()
+          document.querySelector("#hero")?.scrollIntoView({ behavior: "smooth", block: "start" })
+        }}
+      >
+        <img 
+          src={epilogLogo} 
+          alt="Epilog Creative" 
+          className="h-10 w-auto"
+        />
+      </a>
+      <NavBar items={navItems} />
+    </>
+  )
 }
