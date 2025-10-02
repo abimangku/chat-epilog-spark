@@ -111,11 +111,11 @@ const ChatInterface = () => {
       <div className="bg-background border border-border rounded-lg overflow-hidden">
         {/* Messages Area - Animated Expansion */}
         <div 
-          className={`overflow-hidden transition-all duration-500 ease-in-out ${
-            messages.length > 0 ? 'max-h-[60vh] opacity-100' : 'max-h-0 opacity-0'
+          className={`transition-all duration-500 ease-in-out ${
+            messages.length > 0 ? 'h-[60vh] opacity-100' : 'h-0 opacity-0'
           }`}
         >
-          <div className="overflow-y-auto p-6 space-y-4 animate-fade-in" style={{ maxHeight: '60vh' }}>
+          <div className="h-full overflow-y-auto p-6 space-y-4 animate-fade-in">
             {messages.map((message, index) => (
               <div
                 key={index}
