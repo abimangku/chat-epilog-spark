@@ -109,45 +109,44 @@ const ChatInterface = () => {
     <div className="w-full max-w-4xl mx-auto">
       {/* Chat Container */}
       <div className="bg-background border border-border rounded-lg overflow-hidden">
-        {/* Messages Area */}
-        <div className="h-[50vh] overflow-y-auto p-6 space-y-4">
-          {messages.length === 0 && (
-            <div className="text-center text-muted-foreground py-12">
-              <p className="text-base font-light mb-2">Ask me anything about Epilog</p>
-              <p className="text-sm font-light">Services, portfolio, pricing, or general inquiries</p>
-            </div>
-          )}
-          
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
-            >
+        {/* Messages Area - Animated Expansion */}
+        <div 
+          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+            messages.length > 0 ? 'max-h-[60vh] opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div className="overflow-y-auto p-6 space-y-4 animate-fade-in" style={{ maxHeight: '60vh' }}>
+            {messages.map((message, index) => (
               <div
-                className={`max-w-[80%] rounded-lg px-4 py-3 ${
-                  message.role === "user"
-                    ? "bg-foreground text-background"
-                    : "bg-muted text-foreground"
-                }`}
+                key={index}
+                className={`flex ${message.role === "user" ? "justify-end" : "justify-start"} animate-fade-in`}
               >
-                <p className="text-sm leading-relaxed whitespace-pre-wrap font-light">{message.content}</p>
+                <div
+                  className={`max-w-[80%] rounded-lg px-4 py-3 ${
+                    message.role === "user"
+                      ? "bg-foreground text-background"
+                      : "bg-muted text-foreground"
+                  }`}
+                >
+                  <p className="text-sm leading-relaxed whitespace-pre-wrap font-light">{message.content}</p>
+                </div>
               </div>
-            </div>
-          ))}
-          
-          {isLoading && (
-            <div className="flex justify-start">
-              <div className="bg-muted rounded-lg px-4 py-3">
-                <Loader2 className="w-5 h-5 animate-spin text-foreground" />
+            ))}
+            
+            {isLoading && (
+              <div className="flex justify-start animate-fade-in">
+                <div className="bg-muted rounded-lg px-4 py-3">
+                  <Loader2 className="w-5 h-5 animate-spin text-foreground" />
+                </div>
               </div>
-            </div>
-          )}
-          
-          <div ref={messagesEndRef} />
+            )}
+            
+            <div ref={messagesEndRef} />
+          </div>
         </div>
 
-        {/* Input Area */}
-        <form onSubmit={handleSubmit} className="p-4 border-t border-border bg-background">
+        {/* Input Area - Always Visible */}
+        <form onSubmit={handleSubmit} className={`p-4 bg-background ${messages.length > 0 ? 'border-t border-border' : ''}`}>
           <div className="flex gap-2 items-center">
             <div className="flex-1 relative">
               <Input
@@ -155,16 +154,16 @@ const ChatInterface = () => {
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about our services..."
                 disabled={isLoading}
-                className="h-12 bg-background border-border text-foreground placeholder:text-muted-foreground text-sm px-4 rounded-md focus:border-foreground focus:ring-1 focus:ring-foreground"
+                className="h-14 bg-background border-border text-foreground placeholder:text-muted-foreground text-base px-6 rounded-md focus:border-foreground focus:ring-1 focus:ring-foreground transition-all"
               />
             </div>
             <Button
               type="submit"
               disabled={isLoading || !input.trim()}
               size="lg"
-              className="h-12 px-6 bg-foreground hover:bg-foreground/90 text-background rounded-md disabled:opacity-50"
+              className="h-14 px-6 bg-foreground hover:bg-foreground/90 text-background rounded-md disabled:opacity-50 transition-all"
             >
-              <Send className="w-4 h-4" />
+              <Send className="w-5 h-5" />
             </Button>
           </div>
         </form>
