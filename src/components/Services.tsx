@@ -1,4 +1,4 @@
-import { TrendingUp, UserPlus, GraduationCap } from "lucide-react";
+import { TrendingUp, Share2, Users, GraduationCap } from "lucide-react";
 
 const services = [
   {
@@ -7,14 +7,19 @@ const services = [
     description: "Data-driven strategies that deliver measurable results and sustainable growth.",
   },
   {
-    icon: UserPlus,
-    title: "Social Media KOL Marketing",
-    description: "Connect with your audience through strategic influencer partnerships and authentic storytelling.",
+    icon: Share2,
+    title: "Social Media",
+    description: "Engaging content and strategic management across all social platforms.",
+  },
+  {
+    icon: Users,
+    title: "KOL Marketing",
+    description: "Connect with your audience through strategic influencer partnerships.",
   },
   {
     icon: GraduationCap,
     title: "Corporate Training",
-    description: "Elevate your team's digital marketing capabilities with expert-led training programs.",
+    description: "Expert-led programs to elevate your team's digital marketing capabilities.",
   },
 ];
 
@@ -31,7 +36,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <div
               key={index}
