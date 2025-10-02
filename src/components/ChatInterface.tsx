@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Send, Sparkles, Loader2 } from "lucide-react";
+import { Send, Sparkles, Loader2, Download, FileText } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ReactMarkdown from "react-markdown";
 import ContactFormInline from "@/components/ContactFormInline";
@@ -11,6 +11,8 @@ interface Message {
   content: string;
   showContactForm?: boolean;
   contactFormReason?: string;
+  showCredentialsDownload?: boolean;
+  credentialsReason?: string;
 }
 
 const ChatInterface = () => {
@@ -73,6 +75,8 @@ const ChatInterface = () => {
       let buffer = "";
       let showContactForm = false;
       let contactFormReason = "";
+      let showCredentialsDownload = false;
+      let credentialsReason = "";
 
       setMessages([...newMessages, { role: "assistant", content: "" }]);
 
@@ -106,6 +110,14 @@ const ChatInterface = () => {
                 } catch (e) {
                   console.error("Error parsing tool arguments:", e);
                 }
+              } else if (toolCall.function?.name === "offer_credentials_download") {
+                try {
+                  const args = JSON.parse(toolCall.function.arguments);
+                  showCredentialsDownload = true;
+                  credentialsReason = args.reason || "";
+                } catch (e) {
+                  console.error("Error parsing tool arguments:", e);
+                }
               }
             }
             
@@ -118,7 +130,9 @@ const ChatInterface = () => {
                   role: "assistant", 
                   content: assistantMessage,
                   showContactForm,
-                  contactFormReason
+                  contactFormReason,
+                  showCredentialsDownload,
+                  credentialsReason
                 },
               ]);
             }
@@ -137,6 +151,19 @@ const ChatInterface = () => {
             content: assistantMessage || "I'd love to help you with that! Please fill in your details below and our team will get back to you soon.",
             showContactForm: true,
             contactFormReason
+          },
+        ]);
+      }
+
+      // Update final message with credentials download if needed
+      if (showCredentialsDownload) {
+        setMessages([
+          ...newMessages,
+          { 
+            role: "assistant", 
+            content: assistantMessage,
+            showCredentialsDownload: true,
+            credentialsReason
           },
         ]);
       }
@@ -200,6 +227,37 @@ const ChatInterface = () => {
                               ]);
                             }}
                           />
+                        </div>
+                      )}
+                      {message.showCredentialsDownload && (
+                        <div className="mt-4 p-4 bg-background/50 rounded-xl border border-border/50">
+                          <div className="flex items-start gap-3 mb-3">
+                            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                              <FileText className="w-5 h-5 text-primary" />
+                            </div>
+                            <div className="flex-1">
+                              <h4 className="font-semibold mb-1">Download Our Full Credentials</h4>
+                              <p className="text-sm text-muted-foreground">
+                                50+ pages with video samples, detailed case studies, metrics, and our complete portfolio.
+                              </p>
+                            </div>
+                          </div>
+                          <Button 
+                            className="w-full group" 
+                            asChild
+                          >
+                            <a 
+                              href="/EPILOG_Credentials_2025.pdf" 
+                              download="EPILOG_Credentials_2025.pdf"
+                              className="flex items-center justify-center gap-2"
+                            >
+                              <Download className="w-4 h-4 group-hover:animate-bounce" />
+                              Download PDF (2.5 MB)
+                            </a>
+                          </Button>
+                          <p className="text-xs text-muted-foreground text-center mt-2">
+                            Or continue asking me questions - I'm here to help! 😊
+                          </p>
                         </div>
                       )}
                     </>
