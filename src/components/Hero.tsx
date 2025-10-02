@@ -1,13 +1,17 @@
 import ChatInterface from "./ChatInterface";
 import { AnimatedTitle } from "./ui/animated-hero";
 import { Sparkles } from "lucide-react";
+import { ShaderAnimation } from "./ui/shader-animation";
 
 const Hero = () => {
   const rotatingWords = ["story", "data", "strategy", "creativity", "impact"];
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-background pt-32 md:pt-40">
-      <div className="container mx-auto px-6 py-20">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-background pt-32 md:pt-40 overflow-hidden">
+      {/* Shader Animation Background */}
+      <ShaderAnimation />
+      
+      <div className="container mx-auto px-6 py-20 relative z-10">
         <div className="max-w-4xl mx-auto space-y-12 animate-fade-in">
           {/* Main Headline */}
           <div className="text-center space-y-4">
