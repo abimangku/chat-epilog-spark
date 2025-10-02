@@ -25,18 +25,15 @@ const Hero = () => {
           </div>
 
           {/* Chat Interface */}
-          <div className="pt-8 space-y-4">
-            <div className="text-center space-y-2 animate-fade-in">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
-                <Sparkles className="w-4 h-4 text-primary animate-pulse" />
-                <span className="text-sm font-medium text-foreground">AI-Powered Chat</span>
+          <div className="pt-8 space-y-6">
+            <div className="text-center space-y-3 animate-fade-in">
+              <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full shadow-sm">
+                <Sparkles className="w-4 h-4 text-foreground" />
+                <span className="text-sm font-medium text-foreground">AI Assistant</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-light text-foreground">
-                Ask anything about Epilog
+              <h2 className="text-xl md:text-2xl font-light text-foreground">
+                Ask me anything
               </h2>
-              <p className="text-muted-foreground text-sm md:text-base max-w-xl mx-auto">
-                Our AI assistant is here 24/7 to answer questions about our services, pricing, and past work.
-              </p>
             </div>
             <ChatInterface />
           </div>
