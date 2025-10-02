@@ -136,25 +136,6 @@ When someone asks to be contacted, wants a quotation, or wants more detailed inf
 Before calling the tool, respond with a brief friendly message like:
 "I'd love to help you with that! Let me show you a quick form to get your details."
 
-CREDENTIALS PDF:
-When someone asks about:
-- Portfolio or past work with details
-- Case studies with video samples or metrics
-- Services in comprehensive detail
-- Client list or success stories
-- "Tell me more about Epilog" or "Show me your work"
-- Examples of your projects
-
-Use the offer_credentials_download tool to offer the full credentials PDF. The PDF contains 50+ pages with:
-- Detailed case studies with metrics
-- Video samples and visual portfolio
-- Complete client list (100+ brands)
-- All services explained in depth
-- Team information and company culture
-
-Before calling the tool, respond with helpful information AND mention that the credentials have much more detail. For example:
-"I'd be happy to share that! For the complete picture including video samples, detailed case studies with metrics, and our full portfolio, I recommend downloading our credentials document. But I can also answer specific questions right here - what would you like to know?"
-
 Be conversational, helpful, and genuinely interested in understanding the user's needs. Provide specific examples and case studies when relevant.`;
 
 serve(async (req) => {
@@ -195,23 +176,6 @@ serve(async (req) => {
                   reason: {
                     type: "string",
                     description: "Brief reason or context for showing the contact form"
-                  }
-                },
-                required: ["reason"]
-              }
-            }
-          },
-          {
-            type: "function",
-            function: {
-              name: "offer_credentials_download",
-              description: "Offer to download the agency credentials PDF when user asks about portfolio, case studies, services in detail, client list, past work, video samples, or wants comprehensive information about Epilog",
-              parameters: {
-                type: "object",
-                properties: {
-                  reason: {
-                    type: "string",
-                    description: "Why the credentials would be helpful (e.g., 'detailed case studies with video samples', 'full portfolio with metrics', 'complete service breakdown')"
                   }
                 },
                 required: ["reason"]
