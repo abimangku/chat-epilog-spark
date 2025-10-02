@@ -242,18 +242,20 @@ const ChatInterface = () => {
                               </p>
                             </div>
                           </div>
-                          <a 
-                            href="/EPILOG_Credentials_2025.pdf" 
-                            download="EPILOG_Credentials_2025.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full block"
+                          <Button 
+                            className="w-full group flex items-center justify-center gap-2"
+                            onClick={() => {
+                              const link = document.createElement('a');
+                              link.href = '/EPILOG_Credentials_2025.pdf';
+                              link.download = 'EPILOG_Credentials_2025.pdf';
+                              document.body.appendChild(link);
+                              link.click();
+                              document.body.removeChild(link);
+                            }}
                           >
-                            <Button className="w-full group flex items-center justify-center gap-2">
-                              <Download className="w-4 h-4 group-hover:animate-bounce" />
-                              Download PDF (2.5 MB)
-                            </Button>
-                          </a>
+                            <Download className="w-4 h-4 group-hover:animate-bounce" />
+                            Download PDF (2.5 MB)
+                          </Button>
                           <p className="text-xs text-muted-foreground text-center mt-2">
                             Or continue asking me questions - I'm here to help! 😊
                           </p>
