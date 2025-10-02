@@ -13,7 +13,7 @@ const clients = [
 
 const Clients = () => {
   return (
-    <section className="py-20 px-6 border-t border-border">
+    <section id="clients" className="py-20 px-6 border-t border-border">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-light mb-3 tracking-tight">

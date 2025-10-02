@@ -5,7 +5,7 @@ const Hero = () => {
   const rotatingWords = ["story", "data", "strategy", "creativity", "impact"];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-background">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-background">
       <div className="container mx-auto px-6 py-20">
         <div className="max-w-4xl mx-auto space-y-12 animate-fade-in">
           {/* Main Headline */}

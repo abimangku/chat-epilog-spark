@@ -2,7 +2,7 @@ import { Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="py-20 px-6 border-t border-border">
+    <footer id="contact" className="py-20 px-6 border-t border-border">
       <div className="container mx-auto">
         {/* CTA Section */}
         <div className="max-w-2xl mx-auto text-center mb-16">
