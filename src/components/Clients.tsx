@@ -1,3 +1,5 @@
+import { InfiniteSlider } from "@/components/ui/infinite-slider";
+
 const clients = [
   { name: "BCA", category: "Banking" },
   { name: "Commonwealth Bank", category: "Banking" },
@@ -24,21 +26,21 @@ const Clients = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+        <InfiniteSlider gap={64} duration={45} durationOnHover={80} className="mb-12">
           {clients.map((client, index) => (
             <div
               key={index}
-              className="group text-center py-6"
+              className="group inline-flex flex-col items-center px-8 py-6"
             >
-              <h3 className="text-base font-light mb-1 text-foreground/40 group-hover:text-foreground/70 transition-colors">
+              <h3 className="text-base font-light mb-1 text-foreground/40 group-hover:text-foreground/70 transition-colors whitespace-nowrap">
                 {client.name}
               </h3>
-              <p className="text-xs text-muted-foreground font-light">{client.category}</p>
+              <p className="text-xs text-muted-foreground font-light whitespace-nowrap">{client.category}</p>
             </div>
           ))}
-        </div>
+        </InfiniteSlider>
 
-        <div className="text-center mt-12">
+        <div className="text-center">
           <p className="text-sm text-muted-foreground font-light">
             And many more leading brands
           </p>
