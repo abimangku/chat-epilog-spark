@@ -35,76 +35,80 @@ const Footer = () => {
   return (
     <footer id="contact" className="relative border-t border-border/50 bg-background">
       <div className="container mx-auto px-6 py-16 md:px-8 lg:px-12">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-          {/* Contact Form Section */}
-          <div className="relative lg:col-span-2">
-            <h2 className="mb-4 text-2xl md:text-3xl font-light tracking-tight">
+        {/* Contact Form Section - Centered */}
+        <div className="mx-auto max-w-2xl mb-20">
+          <div className="text-center mb-8">
+            <h2 className="mb-3 text-3xl md:text-4xl font-light tracking-tight">
               Be in Touch with Us
             </h2>
-            <p className="mb-6 text-muted-foreground text-sm">
+            <p className="text-muted-foreground text-sm">
               Let's discuss how we can help grow your business.
             </p>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="text-sm font-light">Name</Label>
-                  <Input
-                    id="name"
-                    {...register("name")}
-                    placeholder="Your name"
-                    className="glass"
-                  />
-                  {errors.name && (
-                    <p className="text-xs text-destructive">{errors.name.message}</p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="company" className="text-sm font-light">Company</Label>
-                  <Input
-                    id="company"
-                    {...register("company")}
-                    placeholder="Your company"
-                    className="glass"
-                  />
-                  {errors.company && (
-                    <p className="text-xs text-destructive">{errors.company.message}</p>
-                  )}
-                </div>
-              </div>
+          </div>
+          
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
-                <Label htmlFor="services" className="text-sm font-light">Services of Interest</Label>
+                <Label htmlFor="name" className="text-sm font-light">Name</Label>
                 <Input
-                  id="services"
-                  {...register("services")}
-                  placeholder="e.g., Digital Marketing, Social Media"
+                  id="name"
+                  {...register("name")}
+                  placeholder="Your name"
                   className="glass"
                 />
-                {errors.services && (
-                  <p className="text-xs text-destructive">{errors.services.message}</p>
+                {errors.name && (
+                  <p className="text-xs text-destructive">{errors.name.message}</p>
                 )}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="message" className="text-sm font-light">Message</Label>
-                <Textarea
-                  id="message"
-                  {...register("message")}
-                  placeholder="Tell us about your project..."
-                  className="glass min-h-[100px]"
+                <Label htmlFor="company" className="text-sm font-light">Company</Label>
+                <Input
+                  id="company"
+                  {...register("company")}
+                  placeholder="Your company"
+                  className="glass"
                 />
-                {errors.message && (
-                  <p className="text-xs text-destructive">{errors.message.message}</p>
+                {errors.company && (
+                  <p className="text-xs text-destructive">{errors.company.message}</p>
                 )}
               </div>
-              <Button
-                type="submit"
-                className="w-full bg-foreground hover:bg-foreground/90 text-background transition-all hover:scale-105"
-              >
-                <Send className="h-4 w-4 mr-2" />
-                Send Message
-              </Button>
-            </form>
-          </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="services" className="text-sm font-light">Services of Interest</Label>
+              <Input
+                id="services"
+                {...register("services")}
+                placeholder="e.g., Digital Marketing, Social Media"
+                className="glass"
+              />
+              {errors.services && (
+                <p className="text-xs text-destructive">{errors.services.message}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="message" className="text-sm font-light">Message</Label>
+              <Textarea
+                id="message"
+                {...register("message")}
+                placeholder="Tell us about your project..."
+                className="glass min-h-[100px]"
+              />
+              {errors.message && (
+                <p className="text-xs text-destructive">{errors.message.message}</p>
+              )}
+            </div>
+            <Button
+              type="submit"
+              className="w-full bg-foreground hover:bg-foreground/90 text-background transition-all hover:scale-105"
+            >
+              <Send className="h-4 w-4 mr-2" />
+              Send Message
+            </Button>
+          </form>
+        </div>
 
+        {/* Info Section - Three Equal Columns */}
+        <div className="grid gap-12 md:grid-cols-3 pt-8 border-t border-border/50">
           {/* Quick Links */}
           <div>
             <h3 className="mb-4 text-sm font-medium tracking-wide uppercase">Quick Links</h3>
@@ -165,9 +169,12 @@ const Footer = () => {
                 hello@epilogcreative.com
               </p>
             </address>
-            
-            {/* Social Links */}
-            <div className="mt-6 flex gap-2">
+          </div>
+
+          {/* Social Links */}
+          <div>
+            <h3 className="mb-4 text-sm font-medium tracking-wide uppercase">Follow Us</h3>
+            <div className="flex gap-2">
               <Button 
                 variant="outline" 
                 size="icon" 
