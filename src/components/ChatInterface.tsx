@@ -21,7 +21,9 @@ const ChatInterface = () => {
   };
 
   useEffect(() => {
-    scrollToBottom();
+    if (messages.length > 0) {
+      scrollToBottom();
+    }
   }, [messages]);
 
   const streamChat = async (userMessage: string) => {
