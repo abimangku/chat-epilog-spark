@@ -1,5 +1,6 @@
 import ChatInterface from "./ChatInterface";
 import { AnimatedTitle } from "./ui/animated-hero";
+import { Sparkles } from "lucide-react";
 
 const Hero = () => {
   const rotatingWords = ["story", "data", "strategy", "creativity", "impact"];
@@ -24,7 +25,19 @@ const Hero = () => {
           </div>
 
           {/* Chat Interface */}
-          <div className="pt-4">
+          <div className="pt-8 space-y-4">
+            <div className="text-center space-y-2 animate-fade-in">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
+                <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+                <span className="text-sm font-medium text-foreground">AI-Powered Chat</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-light text-foreground">
+                Ask anything about Epilog
+              </h2>
+              <p className="text-muted-foreground text-sm md:text-base max-w-xl mx-auto">
+                Our AI assistant is here 24/7 to answer questions about our services, pricing, and past work.
+              </p>
+            </div>
             <ChatInterface />
           </div>
 
