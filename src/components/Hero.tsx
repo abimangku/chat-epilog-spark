@@ -1,6 +1,7 @@
 import ChatInterface from "./ChatInterface";
 import { AnimatedTitle } from "./ui/animated-hero";
 import { Sparkles } from "lucide-react";
+import Clients from "./Clients";
 
 const Hero = () => {
   const rotatingWords = ["story", "data", "strategy", "creativity", "impact"];
@@ -43,6 +44,11 @@ const Hero = () => {
               </h2>
             </div>
             <ChatInterface />
+          </div>
+
+          {/* Clients Section */}
+          <div className="pt-16">
+            <Clients />
           </div>
 
         </div>
