@@ -1,6 +1,9 @@
 import ChatInterface from "./ChatInterface";
+import { AnimatedTitle } from "./ui/animated-hero";
 
 const Hero = () => {
+  const rotatingWords = ["story", "data", "strategy", "creativity", "impact"];
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-background">
       <div className="container mx-auto px-6 py-20">
@@ -8,9 +11,12 @@ const Hero = () => {
           {/* Main Headline */}
           <div className="text-center space-y-4">
             <h1 className="text-4xl md:text-6xl font-light leading-tight tracking-tight">
-              We are a story & data driven
-              <br />
-              <span className="font-normal">digital agency.</span>
+              We are a
+              <AnimatedTitle 
+                titles={rotatingWords} 
+                className="md:pb-4 md:pt-1"
+              />
+              driven digital agency.
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground font-light max-w-2xl mx-auto">
               Partnering with startups and global brands in Jakarta and beyond.
