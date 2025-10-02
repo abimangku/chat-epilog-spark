@@ -27,20 +27,20 @@ const CredentialsDownload = () => {
                 </p>
                 
                 <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-                  <Button 
-                    size="lg" 
-                    className="group"
-                    asChild
+                  <a 
+                    href="/EPILOG_Credentials_2025.pdf" 
+                    download="EPILOG_Credentials_2025.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <a 
-                      href="/EPILOG_Credentials_2025.pdf" 
-                      download="EPILOG_Credentials_2025.pdf"
-                      className="flex items-center gap-2"
+                    <Button 
+                      size="lg" 
+                      className="group flex items-center gap-2"
                     >
                       <Download className="w-5 h-5 group-hover:animate-bounce" />
                       Download Full Credentials (PDF)
-                    </a>
-                  </Button>
+                    </Button>
+                  </a>
                   <span className="text-sm text-muted-foreground">
                     PDF • 2.5 MB
                   </span>
