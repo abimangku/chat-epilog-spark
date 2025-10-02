@@ -108,14 +108,13 @@ const ChatInterface = () => {
   return (
     <div className="w-full max-w-4xl mx-auto">
       {/* Chat Container */}
-      <div className="bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl overflow-hidden">
+      <div className="bg-background border border-border rounded-lg overflow-hidden">
         {/* Messages Area */}
         <div className="h-[50vh] overflow-y-auto p-6 space-y-4">
           {messages.length === 0 && (
-            <div className="text-center text-white/60 py-12">
-              <Sparkles className="w-16 h-16 mx-auto mb-4 text-white/40" />
-              <p className="text-lg font-medium mb-2 text-white/80">How can I help you today?</p>
-              <p className="text-sm">Ask about our services, pricing, portfolio, or anything else</p>
+            <div className="text-center text-muted-foreground py-12">
+              <p className="text-base font-light mb-2">Ask me anything about Epilog</p>
+              <p className="text-sm font-light">Services, portfolio, pricing, or general inquiries</p>
             </div>
           )}
           
@@ -125,21 +124,21 @@ const ChatInterface = () => {
               className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
             >
               <div
-                className={`max-w-[80%] rounded-2xl px-5 py-3 ${
+                className={`max-w-[80%] rounded-lg px-4 py-3 ${
                   message.role === "user"
-                    ? "bg-gradient-primary text-white shadow-lg"
-                    : "bg-white/10 backdrop-blur-sm text-white border border-white/10"
+                    ? "bg-foreground text-background"
+                    : "bg-muted text-foreground"
                 }`}
               >
-                <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
+                <p className="text-sm leading-relaxed whitespace-pre-wrap font-light">{message.content}</p>
               </div>
             </div>
           ))}
           
           {isLoading && (
             <div className="flex justify-start">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl px-5 py-3 border border-white/10">
-                <Loader2 className="w-5 h-5 animate-spin text-white" />
+              <div className="bg-muted rounded-lg px-4 py-3">
+                <Loader2 className="w-5 h-5 animate-spin text-foreground" />
               </div>
             </div>
           )}
@@ -147,25 +146,25 @@ const ChatInterface = () => {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input Area - Big and Prominent */}
-        <form onSubmit={handleSubmit} className="p-6 border-t border-white/10 bg-white/5">
-          <div className="flex gap-3 items-center">
+        {/* Input Area */}
+        <form onSubmit={handleSubmit} className="p-4 border-t border-border bg-background">
+          <div className="flex gap-2 items-center">
             <div className="flex-1 relative">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Message Epilog AI..."
+                placeholder="Ask about our services..."
                 disabled={isLoading}
-                className="h-14 bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/50 text-base px-6 rounded-2xl focus:border-white/40 focus:ring-2 focus:ring-white/20"
+                className="h-12 bg-background border-border text-foreground placeholder:text-muted-foreground text-sm px-4 rounded-md focus:border-foreground focus:ring-1 focus:ring-foreground"
               />
             </div>
             <Button
               type="submit"
               disabled={isLoading || !input.trim()}
               size="lg"
-              className="h-14 px-8 bg-gradient-primary hover:opacity-90 text-white rounded-2xl shadow-lg disabled:opacity-50"
+              className="h-12 px-6 bg-foreground hover:bg-foreground/90 text-background rounded-md disabled:opacity-50"
             >
-              <Send className="w-5 h-5" />
+              <Send className="w-4 h-4" />
             </Button>
           </div>
         </form>

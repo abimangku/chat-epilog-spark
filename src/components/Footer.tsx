@@ -1,48 +1,31 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="relative py-24 px-6 overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-hero" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/20 rounded-full blur-3xl" />
-      
-      <div className="container mx-auto relative z-10">
+    <footer className="py-20 px-6 border-t border-border">
+      <div className="container mx-auto">
         {/* CTA Section */}
-        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Transform Your
-            <br />
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Digital Presence?
-            </span>
+        <div className="max-w-2xl mx-auto text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-light mb-4 tracking-tight">
+            Let's work together
           </h2>
-          <p className="text-xl text-muted-foreground mb-8">
-            Let's discuss how we can help you achieve your marketing goals
+          <p className="text-sm text-muted-foreground font-light mb-8">
+            Ready to elevate your digital presence?
           </p>
-          <Button
-            size="lg"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="group bg-gradient-primary hover:opacity-90 text-white border-0 px-8 py-6 text-lg font-semibold shadow-glow"
-          >
-            Start Your Journey
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
         </div>
 
         {/* Footer Info */}
-        <div className="grid md:grid-cols-3 gap-8 pt-16 border-t border-border/30">
+        <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div>
-            <h3 className="text-2xl font-bold mb-4">epilog.</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              Story & Data Driven Digital Agency helping businesses grow through innovative marketing strategies.
+            <h3 className="text-xl font-normal mb-3">Epilog Creative</h3>
+            <p className="text-muted-foreground text-sm font-light leading-relaxed">
+              A story & data driven digital agency based in Jakarta.
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Services</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h4 className="font-normal mb-4 text-sm">Services</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground font-light">
               <li>Digital Marketing</li>
               <li>Video Production</li>
               <li>Corporate Training</li>
@@ -51,13 +34,13 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Contact</h4>
+            <h4 className="font-normal mb-4 text-sm">Contact</h4>
             <ul className="space-y-3 text-sm">
-              <li className="flex items-start gap-2 text-muted-foreground">
-                <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
+              <li className="flex items-start gap-2 text-muted-foreground font-light">
+                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span>Jakarta, Indonesia</span>
               </li>
-              <li className="flex items-center gap-2 text-muted-foreground">
+              <li className="flex items-center gap-2 text-muted-foreground font-light">
                 <Mail className="w-4 h-4 flex-shrink-0" />
                 <span>hello@epilogcreative.com</span>
               </li>
@@ -65,8 +48,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border/30 text-center text-sm text-muted-foreground">
-          <p>&copy; 2025 Epilog Creative. All rights reserved.</p>
+        <div className="pt-8 border-t border-border text-center text-xs text-muted-foreground font-light">
+          <p>© 2025 Epilog Creative</p>
         </div>
       </div>
     </footer>

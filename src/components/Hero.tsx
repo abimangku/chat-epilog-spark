@@ -1,48 +1,33 @@
-import { Sparkles } from "lucide-react";
 import ChatInterface from "./ChatInterface";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-glow-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-glow-pulse" style={{ animationDelay: "1.5s" }} />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-5xl mx-auto text-center space-y-8 animate-fade-in">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 backdrop-blur-sm border border-border/50">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium">Story & Data Driven Digital Agency</span>
+    <section className="relative min-h-screen flex items-center justify-center bg-background">
+      <div className="container mx-auto px-6 py-20">
+        <div className="max-w-4xl mx-auto space-y-12 animate-fade-in">
+          {/* Main Headline */}
+          <div className="text-center space-y-4">
+            <h1 className="text-4xl md:text-6xl font-light leading-tight tracking-tight">
+              We are a story & data driven
+              <br />
+              <span className="font-normal">digital agency.</span>
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground font-light max-w-2xl mx-auto">
+              Partnering with startups and global brands in Jakarta and beyond.
+            </p>
           </div>
 
-          {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            Transform Your Brand
-            <br />
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
-              With AI-Powered Strategy
-            </span>
-          </h1>
-
-          {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Jakarta's premier digital agency partnering with startups and global brands.
-          </p>
-
           {/* Chat Interface */}
-          <div className="pt-8">
+          <div className="pt-4">
             <ChatInterface />
           </div>
 
           {/* Trust Indicators */}
-          <div className="pt-16">
-            <p className="text-sm text-muted-foreground mb-6">Trusted by leading brands</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+          <div className="pt-12 text-center">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-8 font-light">Trusted by</p>
+            <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
               {["BCA", "BSI", "Kalbe", "JNE", "Allianz", "ERHA"].map((brand) => (
-                <div key={brand} className="text-2xl font-bold tracking-wider">
+                <div key={brand} className="text-xl font-light tracking-wide text-foreground/60">
                   {brand}
                 </div>
               ))}
