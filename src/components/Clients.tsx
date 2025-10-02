@@ -22,7 +22,7 @@ const Clients = () => {
             Our clients
           </h2>
           <p className="text-sm text-muted-foreground font-light max-w-2xl mx-auto">
-            Partnering with 100+ brands across Indonesia and Southeast Asia
+            Partnering with 100+ brands across Indonesia, Southeast Asia, and Europe
           </p>
         </div>
 
