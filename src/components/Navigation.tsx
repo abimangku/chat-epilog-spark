@@ -1,5 +1,6 @@
 import { Home, Briefcase, Users, Mail } from "lucide-react"
 import { NavBar } from "@/components/ui/tubelight-navbar"
+import MobileNav from "@/components/MobileNav"
 import epilogLogo from "@/assets/epilog-logo.avif"
 
 export default function Navigation() {
@@ -12,6 +13,7 @@ export default function Navigation() {
 
   return (
     <>
+      {/* Logo */}
       <a 
         href="#hero" 
         className="fixed top-6 left-4 md:left-6 z-[60]"
@@ -26,7 +28,14 @@ export default function Navigation() {
           className="h-8 md:h-10 w-auto"
         />
       </a>
-      <NavBar items={navItems} />
+
+      {/* Desktop Navigation */}
+      <div className="hidden md:block">
+        <NavBar items={navItems} />
+      </div>
+
+      {/* Mobile Navigation */}
+      <MobileNav />
     </>
   )
 }
