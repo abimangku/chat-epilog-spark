@@ -14,7 +14,7 @@ export default function Navigation() {
     <>
       <a 
         href="#hero" 
-        className="fixed top-6 left-6 z-50"
+        className="fixed top-6 left-4 md:left-6 z-[60]"
         onClick={(e) => {
           e.preventDefault()
           document.querySelector("#hero")?.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -23,7 +23,7 @@ export default function Navigation() {
         <img 
           src={epilogLogo} 
           alt="Epilog Creative" 
-          className="h-10 w-auto"
+          className="h-8 md:h-10 w-auto"
         />
       </a>
       <NavBar items={navItems} />
