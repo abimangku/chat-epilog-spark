@@ -4,10 +4,13 @@ import { Input } from "@/components/ui/input";
 import { Send, Sparkles, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ReactMarkdown from "react-markdown";
+import ContactFormInline from "@/components/ContactFormInline";
 
 interface Message {
   role: "user" | "assistant";
   content: string;
+  showContactForm?: boolean;
+  contactFormReason?: string;
 }
 
 const ChatInterface = () => {
@@ -68,6 +71,8 @@ const ChatInterface = () => {
       const decoder = new TextDecoder();
       let assistantMessage = "";
       let buffer = "";
+      let showContactForm = false;
+      let contactFormReason = "";
 
       setMessages([...newMessages, { role: "assistant", content: "" }]);
 
@@ -88,18 +93,52 @@ const ChatInterface = () => {
 
           try {
             const parsed = JSON.parse(data);
+            
+            // Check for tool calls
+            const toolCalls = parsed.choices?.[0]?.delta?.tool_calls;
+            if (toolCalls && toolCalls.length > 0) {
+              const toolCall = toolCalls[0];
+              if (toolCall.function?.name === "show_contact_form") {
+                try {
+                  const args = JSON.parse(toolCall.function.arguments);
+                  showContactForm = true;
+                  contactFormReason = args.reason || "";
+                } catch (e) {
+                  console.error("Error parsing tool arguments:", e);
+                }
+              }
+            }
+            
             const content = parsed.choices?.[0]?.delta?.content;
             if (content) {
               assistantMessage += content;
               setMessages([
                 ...newMessages,
-                { role: "assistant", content: assistantMessage },
+                { 
+                  role: "assistant", 
+                  content: assistantMessage,
+                  showContactForm,
+                  contactFormReason
+                },
               ]);
             }
           } catch (e) {
             console.error("Parse error:", e);
           }
         }
+      }
+
+      // Update final message with contact form flag if needed
+      if (showContactForm) {
+        setMessages([
+          ...newMessages,
+          { 
+            role: "assistant", 
+            content: assistantMessage || "I'd love to help you with that! Please fill in your details below and our team will get back to you soon.",
+            showContactForm: true,
+            contactFormReason
+          },
+        ]);
       }
     } catch (error) {
       console.error("Chat error:", error);
@@ -143,9 +182,27 @@ const ChatInterface = () => {
                   {message.role === "user" ? (
                     <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
                   ) : (
-                    <div className="text-sm leading-relaxed prose prose-sm max-w-none prose-headings:font-semibold prose-headings:mb-2 prose-p:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:my-1 prose-strong:font-semibold prose-strong:text-foreground">
-                      <ReactMarkdown>{message.content}</ReactMarkdown>
-                    </div>
+                    <>
+                      <div className="text-sm leading-relaxed prose prose-sm max-w-none prose-headings:font-semibold prose-headings:mb-2 prose-p:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:my-1 prose-strong:font-semibold prose-strong:text-foreground">
+                        <ReactMarkdown>{message.content}</ReactMarkdown>
+                      </div>
+                      {message.showContactForm && (
+                        <div className="mt-4">
+                          <ContactFormInline
+                            reason={message.contactFormReason}
+                            onSuccess={() => {
+                              setMessages(prev => [
+                                ...prev,
+                                {
+                                  role: "assistant",
+                                  content: "Thank you! We've received your message and will get back to you within 24 hours. Is there anything else I can help you with?"
+                                }
+                              ]);
+                            }}
+                          />
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
               </div>

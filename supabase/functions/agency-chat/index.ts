@@ -105,11 +105,12 @@ DEFAULT BEHAVIORS:
 - If user asks for services → Mention social media, content creation, campaigns, ads, and training
 - If user asks for past work → Share case study examples (Brompton, Polytron, Bank Mega, etc.)
 - If unclear question → Ask for clarification politely
-- If user wants to be contacted or requests more info → Provide this Google Form link: https://googleform.com (opens in new tab)
 
 CONTACT FORM:
-When someone asks to be contacted, wants a quotation, or wants more detailed information, provide them with our contact form link. Say something like:
-"Great! You can fill out our contact form here: https://googleform.com - we'll get back to you within 24 hours."
+When someone asks to be contacted, wants a quotation, or wants more detailed information, use the show_contact_form tool. This will display a contact form directly in the chat for a seamless experience.
+
+Before calling the tool, respond with a brief friendly message like:
+"I'd love to help you with that! Let me show you a quick form to get your details."
 
 Be conversational, helpful, and genuinely interested in understanding the user's needs. Provide specific examples and case studies when relevant.`;
 
@@ -139,6 +140,26 @@ serve(async (req) => {
           ...messages,
         ],
         stream: true,
+        tools: [
+          {
+            type: "function",
+            function: {
+              name: "show_contact_form",
+              description: "Show contact form when user wants to be contacted, requests quotation, pricing details, or needs personalized consultation",
+              parameters: {
+                type: "object",
+                properties: {
+                  reason: {
+                    type: "string",
+                    description: "Brief reason or context for showing the contact form"
+                  }
+                },
+                required: ["reason"]
+              }
+            }
+          }
+        ],
+        tool_choice: "auto"
       }),
     });
 
