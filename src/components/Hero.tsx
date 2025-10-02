@@ -1,11 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import ChatInterface from "./ChatInterface";
 
-interface HeroProps {
-  onOpenChat: () => void;
-}
-
-const Hero = ({ onOpenChat }: HeroProps) => {
+const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero">
       {/* Animated Background Elements */}
@@ -33,31 +29,16 @@ const Hero = ({ onOpenChat }: HeroProps) => {
 
           {/* Subheadline */}
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Jakarta's premier digital agency partnering with startups and global brands. 
-            Chat with our AI to discover how we can elevate your marketing.
+            Jakarta's premier digital agency partnering with startups and global brands.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <Button 
-              size="lg" 
-              className="group bg-gradient-primary hover:opacity-90 text-white border-0 px-8 py-6 text-lg font-semibold shadow-glow transition-all hover:scale-105"
-              onClick={onOpenChat}
-            >
-              Start Conversation
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card px-8 py-6 text-lg"
-            >
-              View Our Work
-            </Button>
+          {/* Chat Interface */}
+          <div className="pt-8">
+            <ChatInterface />
           </div>
 
           {/* Trust Indicators */}
-          <div className="pt-12">
+          <div className="pt-16">
             <p className="text-sm text-muted-foreground mb-6">Trusted by leading brands</p>
             <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
               {["BCA", "BSI", "Kalbe", "JNE", "Allianz", "ERHA"].map((brand) => (

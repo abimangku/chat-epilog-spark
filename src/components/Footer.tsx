@@ -1,11 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, MapPin } from "lucide-react";
 
-interface FooterProps {
-  onOpenChat: () => void;
-}
-
-const Footer = ({ onOpenChat }: FooterProps) => {
+const Footer = () => {
   return (
     <footer className="relative py-24 px-6 overflow-hidden">
       {/* Background decoration */}
@@ -27,7 +23,7 @@ const Footer = ({ onOpenChat }: FooterProps) => {
           </p>
           <Button
             size="lg"
-            onClick={onOpenChat}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="group bg-gradient-primary hover:opacity-90 text-white border-0 px-8 py-6 text-lg font-semibold shadow-glow"
           >
             Start Your Journey

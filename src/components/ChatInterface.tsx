@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { X, Send, Sparkles, Loader2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { Send, Sparkles, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface Message {
@@ -10,12 +9,7 @@ interface Message {
   content: string;
 }
 
-interface ChatInterfaceProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-const ChatInterface = ({ isOpen, onClose }: ChatInterfaceProps) => {
+const ChatInterface = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -111,39 +105,17 @@ const ChatInterface = ({ isOpen, onClose }: ChatInterfaceProps) => {
     setInput("");
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-fade-in">
-      <div className="w-full max-w-3xl h-[80vh] bg-gradient-card backdrop-blur-xl rounded-2xl border border-border/50 shadow-2xl flex flex-col overflow-hidden">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-border/50 bg-card/30">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg">Epilog AI Assistant</h3>
-              <p className="text-sm text-muted-foreground">Ask me anything about our services</p>
-            </div>
-          </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={onClose}
-            className="hover:bg-muted/50"
-          >
-            <X className="w-5 h-5" />
-          </Button>
-        </div>
-
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+    <div className="w-full max-w-4xl mx-auto">
+      {/* Chat Container */}
+      <div className="bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl overflow-hidden">
+        {/* Messages Area */}
+        <div className="h-[50vh] overflow-y-auto p-6 space-y-4">
           {messages.length === 0 && (
-            <div className="text-center text-muted-foreground py-12">
-              <Sparkles className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p className="text-lg font-medium mb-2">How can I help you today?</p>
-              <p className="text-sm">Ask about our services, pricing, or portfolio</p>
+            <div className="text-center text-white/60 py-12">
+              <Sparkles className="w-16 h-16 mx-auto mb-4 text-white/40" />
+              <p className="text-lg font-medium mb-2 text-white/80">How can I help you today?</p>
+              <p className="text-sm">Ask about our services, pricing, portfolio, or anything else</p>
             </div>
           )}
           
@@ -153,10 +125,10 @@ const ChatInterface = ({ isOpen, onClose }: ChatInterfaceProps) => {
               className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
             >
               <div
-                className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                className={`max-w-[80%] rounded-2xl px-5 py-3 ${
                   message.role === "user"
-                    ? "bg-gradient-primary text-white"
-                    : "bg-muted/50 backdrop-blur-sm text-foreground"
+                    ? "bg-gradient-primary text-white shadow-lg"
+                    : "bg-white/10 backdrop-blur-sm text-white border border-white/10"
                 }`}
               >
                 <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
@@ -166,8 +138,8 @@ const ChatInterface = ({ isOpen, onClose }: ChatInterfaceProps) => {
           
           {isLoading && (
             <div className="flex justify-start">
-              <div className="bg-muted/50 backdrop-blur-sm rounded-2xl px-4 py-3">
-                <Loader2 className="w-5 h-5 animate-spin" />
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl px-5 py-3 border border-white/10">
+                <Loader2 className="w-5 h-5 animate-spin text-white" />
               </div>
             </div>
           )}
@@ -175,22 +147,25 @@ const ChatInterface = ({ isOpen, onClose }: ChatInterfaceProps) => {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input */}
-        <form onSubmit={handleSubmit} className="p-6 border-t border-border/50 bg-card/30">
-          <div className="flex gap-2">
-            <Input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
-              disabled={isLoading}
-              className="flex-1 bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary"
-            />
+        {/* Input Area - Big and Prominent */}
+        <form onSubmit={handleSubmit} className="p-6 border-t border-white/10 bg-white/5">
+          <div className="flex gap-3 items-center">
+            <div className="flex-1 relative">
+              <Input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Message Epilog AI..."
+                disabled={isLoading}
+                className="h-14 bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/50 text-base px-6 rounded-2xl focus:border-white/40 focus:ring-2 focus:ring-white/20"
+              />
+            </div>
             <Button
               type="submit"
               disabled={isLoading || !input.trim()}
-              className="bg-gradient-primary hover:opacity-90 text-white px-6"
+              size="lg"
+              className="h-14 px-8 bg-gradient-primary hover:opacity-90 text-white rounded-2xl shadow-lg disabled:opacity-50"
             >
-              <Send className="w-4 h-4" />
+              <Send className="w-5 h-5" />
             </Button>
           </div>
         </form>
