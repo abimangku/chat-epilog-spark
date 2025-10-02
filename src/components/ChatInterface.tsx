@@ -13,11 +13,13 @@ const ChatInterface = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
   };
 
   useEffect(() => {
@@ -117,7 +119,7 @@ const ChatInterface = () => {
             messages.length > 0 ? 'h-[60vh] opacity-100' : 'h-0 opacity-0'
           }`}
         >
-          <div className="h-full overflow-y-auto p-6 space-y-4 animate-fade-in">
+          <div ref={messagesContainerRef} className="h-full overflow-y-auto p-6 space-y-4 animate-fade-in">
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -142,8 +144,6 @@ const ChatInterface = () => {
                 </div>
               </div>
             )}
-            
-            <div ref={messagesEndRef} />
           </div>
         </div>
 
