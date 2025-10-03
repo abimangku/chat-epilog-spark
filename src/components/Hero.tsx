@@ -7,7 +7,7 @@ const Hero = () => {
   const rotatingWords = ["story", "data", "strategy", "creativity", "impact"];
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-background pt-32 md:pt-40 overflow-hidden">
+    <section id="hero-section" className="relative min-h-screen flex items-center justify-center bg-background pt-32 md:pt-40 overflow-hidden">
       {/* Animated gradient background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="animated-gradient-1" />

@@ -4,6 +4,7 @@ import CredentialsDownloadBar from "@/components/CredentialsDownloadBar";
 import CaseStudies from "@/components/CaseStudies";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
+import FloatingChatWidget from "@/components/FloatingChatWidget";
 
 const Index = () => {
   return (
@@ -14,6 +15,7 @@ const Index = () => {
       <CredentialsDownloadBar />
       <CaseStudies />
       <Footer />
+      <FloatingChatWidget />
     </div>
   );
 };
