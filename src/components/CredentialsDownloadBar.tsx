@@ -14,31 +14,27 @@ const CredentialsDownloadBar = () => {
   return (
     <section className="py-20 px-6">
       <div className="container mx-auto">
-        <div className="max-w-4xl mx-auto space-y-8">
-          {/* Prominent Headline */}
-          <div className="text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-2">
-              Download Our Full Credential
-            </h2>
-          </div>
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          {/* Large Headline */}
+          <h2 className="text-5xl md:text-6xl font-bold text-foreground">
+            Download Our Full Credential
+          </h2>
+          
+          {/* Subheadline */}
+          <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto">
+            See our full portfolio with video samples, campaign performance & case studies
+          </p>
 
-          {/* Glassmorphic Bar */}
-          <div className="bg-background/80 backdrop-blur-lg border border-border rounded-full shadow-lg px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-4 flex-1">
-              <Download className="w-6 h-6 text-foreground/60 flex-shrink-0" />
-              <p className="text-sm text-foreground/70 font-light text-center md:text-left">
-                See our full portfolio with video samples, campaign performance & case studies
-              </p>
-            </div>
-            
+          {/* Download Button with Jiggle */}
+          <div className="flex justify-center pt-4">
             <MovingBorderButton
               onClick={handleDownload}
               duration={3000}
               borderRadius="1.75rem"
               containerClassName="w-auto"
-              className="bg-background/90 backdrop-blur-xl px-6 py-3 text-sm font-medium whitespace-nowrap"
+              className="bg-black text-white px-8 py-4 text-base font-medium whitespace-nowrap"
             >
-              <Download className="w-4 h-4 mr-2 inline" />
+              <Download className="w-5 h-5 mr-2 inline" />
               Download Credential
             </MovingBorderButton>
           </div>
