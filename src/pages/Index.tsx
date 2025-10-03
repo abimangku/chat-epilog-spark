@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import CredentialsDownloadBar from "@/components/CredentialsDownloadBar";
 import CaseStudies from "@/components/CaseStudies";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
@@ -10,6 +11,7 @@ const Index = () => {
       <Navigation />
       <Hero />
       <Services />
+      <CredentialsDownloadBar />
       <CaseStudies />
       <Footer />
     </div>
