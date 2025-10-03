@@ -5,18 +5,21 @@ import CaseStudies from "@/components/CaseStudies";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 import FloatingChatWidget from "@/components/FloatingChatWidget";
+import { ChatProvider } from "@/hooks/useChatStore";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      <Hero />
-      <Services />
-      <CredentialsDownloadBar />
-      <CaseStudies />
-      <Footer />
-      <FloatingChatWidget />
-    </div>
+    <ChatProvider>
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <Hero />
+        <Services />
+        <CredentialsDownloadBar />
+        <CaseStudies />
+        <Footer />
+        <FloatingChatWidget />
+      </div>
+    </ChatProvider>
   );
 };
 

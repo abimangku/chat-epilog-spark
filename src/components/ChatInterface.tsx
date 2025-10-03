@@ -1,11 +1,12 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Send, Sparkles } from "lucide-react";
+import { Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ReactMarkdown from "react-markdown";
 import ContactFormInline from "@/components/ContactFormInline";
 import TypingIndicator from "./TypingIndicator";
+import { useChatStore } from "@/hooks/useChatStore";
 
 interface Message {
   role: "user" | "assistant";
@@ -20,15 +21,7 @@ interface ChatInterfaceProps {
 }
 
 const ChatInterface = ({ isFloating = false }: ChatInterfaceProps) => {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content: "Hi! 👋 I'm **Epilog AI**, your virtual assistant. I can answer questions about our services, past projects, pricing, and more. If you need something specific, I can connect you with our team!",
-      timestamp: new Date(),
-    }
-  ]);
-  const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const { messages, setMessages, isLoading, setIsLoading, input, setInput } = useChatStore();
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
